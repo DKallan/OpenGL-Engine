@@ -105,5 +105,11 @@
     <None Include="resources\Shaders\Triangle.vs">
       <Filter>Resource Files\Shader Files</Filter>
     </None>
+    <None Include="Resources\Shaders\Textured.vs">
+      <Filter>Resource Files\Shader Files</Filter>
+    </None>
+    <None Include="Resources\Shaders\Textured.fs">
+      <Filter>Resource Files\Shader Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

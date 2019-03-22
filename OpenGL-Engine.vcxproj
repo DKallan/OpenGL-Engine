@@ -44,6 +44,8 @@
     <Image Include="resources\Assets\texture_stone.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Shaders\Textured.fs" />
+    <None Include="Resources\Shaders\Textured.vs" />
     <None Include="resources\Shaders\Triangle.fs" />
     <None Include="resources\Shaders\Triangle.vs" />
   </ItemGroup>

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _TEXTURELOADER_H_
 #define _TEXTURE_LOADER_H_
 
@@ -17,7 +18,7 @@ public:
 	TextureLoader(TextureLoader const &other) = delete;
 	void operator=(TextureLoader const &other) = delete;
 
-	unsigned int LoadTexture(const char* path) const;
+	unsigned int LoadTexture(const char* path, bool flip = true) const;
 	void SetWindowIcon(const char* path, GLFWwindow &_window) const;
 
 private:

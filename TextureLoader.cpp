@@ -10,12 +10,16 @@ TextureLoader & TextureLoader::Instance()
 	return instance;
 }
 
-unsigned int TextureLoader::LoadTexture(const char * path) const
+unsigned int TextureLoader::LoadTexture(const char * path, bool flip) const
 {
 	unsigned int textureID;
 	glGenTextures(1, &textureID);
 
 	int width, height, nrComponents;
+
+	if(flip)
+		stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
+	
 	unsigned char* data = stbi_load(path, &width, &height, &nrComponents, 0);
 	if (!data)
 	{
@@ -45,8 +49,8 @@ unsigned int TextureLoader::LoadTexture(const char * path) const
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
 	stbi_image_free(data);
 

@@ -84,9 +84,13 @@ int Engine::Initialize()
 // Main execution point.
 int Engine::Run()
 {
-	Shader triangleShader = Shader("Resources/Shaders/Triangle.vs", "Resources/Shaders/Triangle.fs");
-	Triangle dummy = Triangle(&triangleShader);
-	dummy.Initialize();
+	// ===== SETUP ======
+	Shader triangleShader = Shader("Resources/Shaders/Textured.vs", "Resources/Shaders/Textured.fs");
+	Triangle cube = Triangle(&triangleShader);
+	cube.Initialize();
+
+	cube.AddTexture("Resources/Assets/texture_stone.png");
+	// ==================
 
 	// Game loop.
 	while (!_window->Closed())
@@ -95,9 +99,24 @@ int Engine::Run()
 		
 		_inputHandler->ProcessInput(_deltaTime);
 		
+		// create transformations
+		glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+		glm::mat4 view = glm::mat4(1.0f);
+		glm::mat4 projection = glm::mat4(1.0f);
+		model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
+		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+		projection = glm::perspective(glm::radians(45.0f), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
+		// retrieve the matrix uniform locations
+		unsigned int modelLoc = glGetUniformLocation(triangleShader.ID, "model");
+		unsigned int viewLoc = glGetUniformLocation(triangleShader.ID, "view");
+		// pass them to the shaders (3 different ways)
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &view[0][0]);
+		triangleShader.SetMat4("projection", projection);
+
 		// ===== DRAWING ======
 		_window->Clear();
-		dummy.Draw();
+		cube.Draw();
 		_window->Update();
 		// ====================		
 	}
@@ -108,7 +127,7 @@ int Engine::Run()
 void Engine::UpdateTime()
 {
 	// per-frame time logic
-	float currentFrame = glfwGetTime();
+	float currentFrame = (float)glfwGetTime();
 	_deltaTime = currentFrame - _lastFrame;
 	_lastFrame = currentFrame;
 }

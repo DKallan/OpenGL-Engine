@@ -58,7 +58,7 @@ int Window::Initialize()
 	TextureLoader::Instance().SetWindowIcon("Resources/Assets/engine_icon.png", *_window);
 
 	// Enable z-buffer.
-	//glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);
 
 	_initialized = true;
 	return 0;
@@ -78,7 +78,7 @@ void Window::Update() const
 void Window::Clear() const
 {
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 // Resize Callback: Gets called whenever the window is resized and will change the viewport accordingly.
