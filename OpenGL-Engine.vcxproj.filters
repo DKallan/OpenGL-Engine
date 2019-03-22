@@ -13,68 +13,97 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Shader Files">
-      <UniqueIdentifier>{e7fd6066-4fb4-4eae-8e81-52585528efe4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Dependency Implementation">
       <UniqueIdentifier>{7db44920-3152-48cc-9f59-9e37ddbf26c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine Components">
+      <UniqueIdentifier>{89212db5-3b5a-4582-b583-c2104b78b5f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering">
+      <UniqueIdentifier>{c35e7a5d-c6cf-4dec-b4de-c2a2a5e9d0fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine Components">
+      <UniqueIdentifier>{953de0d8-6a9d-453b-b932-adee1efb47bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Rendering">
+      <UniqueIdentifier>{fdc8a0b2-ea96-41c2-acc0-9f99829bf1d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shader Files">
+      <UniqueIdentifier>{e7fd6066-4fb4-4eae-8e81-52585528efe4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Assets">
+      <UniqueIdentifier>{80b4045c-8241-4701-b0fa-8f734ce1ccb9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InputHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="glad.cpp">
       <Filter>Source Files\Dependency Implementation</Filter>
     </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
+      <Filter>Source Files\Engine Components</Filter>
+    </ClCompile>
     <ClCompile Include="TextureLoader.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Engine Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Source Files\Engine Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files\Engine Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Square.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resources\minecraft_terrain.jpg">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="InputHandler.h">
+      <Filter>Header Files\Engine Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureLoader.h">
+      <Filter>Header Files\Engine Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Header Files\Engine Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files\Engine Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Square.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\Assets\engine_icon.png">
+      <Filter>Resource Files\Assets</Filter>
     </Image>
-    <Image Include="resources\texture_stone.png">
-      <Filter>Resource Files</Filter>
+    <Image Include="resources\Assets\minecraft_terrain.jpg">
+      <Filter>Resource Files\Assets</Filter>
     </Image>
-    <Image Include="resources\engine_icon.png">
-      <Filter>Resource Files</Filter>
+    <Image Include="resources\Assets\texture_stone.png">
+      <Filter>Resource Files\Assets</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InputHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <None Include="Square.vs">
+      <Filter>Resource Files\Shader Files</Filter>
+    </None>
+    <None Include="Square.fs">
+      <Filter>Resource Files\Shader Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -55,7 +55,7 @@ int Window::Initialize()
 		return -3;
 	}
 
-	TextureLoader::Instance().SetWindowIcon("Resources/engine_icon.png", *_window);
+	TextureLoader::Instance().SetWindowIcon("Resources/Assets/engine_icon.png", *_window);
 
 	// Enable z-buffer.
 	glEnable(GL_DEPTH_TEST);
@@ -73,6 +73,12 @@ void Window::Update() const
 {
 	glfwSwapBuffers(_window);
 	glfwPollEvents();
+}
+
+void Window::Clear() const
+{
+	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 // Resize Callback: Gets called whenever the window is resized and will change the viewport accordingly.

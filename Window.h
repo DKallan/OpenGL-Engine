@@ -20,6 +20,7 @@ public:
 
 	bool Closed() const;
 	void Update() const;
+	void Clear() const;
 
 	GLFWwindow& GetCurrentWindowRef() const { return *_window; };
 

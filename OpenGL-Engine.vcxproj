@@ -26,12 +26,8 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
+    <ClCompile Include="Square.cpp" />
     <ClCompile Include="Window.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="resources\engine_icon.png" />
-    <Image Include="resources\minecraft_terrain.jpg" />
-    <Image Include="resources\texture_stone.png" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -39,7 +35,17 @@
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="TextureLoader.h" />
+    <ClInclude Include="Square.h" />
     <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Square.fs" />
+    <None Include="Square.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\Assets\engine_icon.png" />
+    <Image Include="resources\Assets\minecraft_terrain.jpg" />
+    <Image Include="resources\Assets\texture_stone.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

@@ -1,9 +1,13 @@
 #ifndef _ENGINE_H_
 #define _ENGINE_H_
 
+// System includes.
+#include <string.h>
+
 // My includes.
 #include "Window.h"
 #include "InputHandler.h"
+#include "Square.h"
 
 class Engine
 {
