@@ -36,7 +36,7 @@ int Window::Initialize()
 	{
 		std::cout << "Failed to create GLFW window." << std::endl;
 		glfwTerminate();
-		return -1;
+		return -2;
 	}
 
 	// Make the window our current context and assign some callback functions.
@@ -46,8 +46,20 @@ int Window::Initialize()
 	glfwSetScrollCallback(_window, Scroll_Callback);
 
 	glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetWindowPos(_window, 100, 100);
 
-	glfwSetWindowPos(_window, 50, 50);
+	unsigned int stb_icon = TextureLoader::Instance().LoadTexture("texture_stone.png");
+
+	//glfwSetWindowIcon(_window, 1, icon)
+
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	{
+		std::cout << "Failed to initialize GLAD" << std::endl;
+		return -3;
+	}
+
+	// Enable z-buffer.
+	glEnable(GL_DEPTH_TEST);
 
 	_initialized = true;
 	return 0;

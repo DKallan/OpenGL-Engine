@@ -10,10 +10,10 @@
 class InputHandler
 {
 public:
-	InputHandler(GLFWwindow* windowPtr, Camera* cameraPtr);
+	InputHandler(GLFWwindow &windowRef, Camera &cameraRef);
 	~InputHandler();
 
-	void ProcessInput();
+	void ProcessInput(float deltaTime);
 
 private:
 	GLFWwindow* _window;

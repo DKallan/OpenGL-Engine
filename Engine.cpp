@@ -41,7 +41,14 @@ Engine::~Engine()
 
 int Engine::Initialize()
 {
+	// Create and Initialize a Window object.
 	_window = new Window(WIDTH, HEIGHT, "Minecraft Magma Edition");
+	if (!_window)
+	{
+		std::cout << "Failed to create a Window object." << std::endl;
+		return -1;
+	}
+
 	int result = _window->Initialize();
 	if (result)
 	{
@@ -49,18 +56,20 @@ int Engine::Initialize()
 		return result;
 	}
 
+	// Create a Camera object.
 	_camera = new Camera();
 	if (!_camera)
 	{
 		std::cout << "Failed to create Camera object." << std::endl;
-		return -3;
+		return -4;
 	}
 
-	_inputHandler = new InputHandler(_window->GetCurrentWindowPtr(), _camera);
+	// Create an Input Handler object.
+	_inputHandler = new InputHandler(_window->GetCurrentWindowRef(), *_camera);
 	if (!_inputHandler)
 	{
 		std::cout << "Failed to create InputHandler object." << std::endl;
-		return -4;
+		return -5;
 	}
 
 	return 0;
@@ -72,10 +81,27 @@ int Engine::Run()
 	// Game loop.
 	while (!_window->Closed())
 	{
+		UpdateTime();
+		Draw();
 		_window->Update();
-		_inputHandler->ProcessInput();
+		_inputHandler->ProcessInput(_deltaTime);
 	}
+
 	return 0;
+}
+
+void Engine::UpdateTime()
+{
+	// per-frame time logic
+	float currentFrame = glfwGetTime();
+	_deltaTime = currentFrame - _lastFrame;
+	_lastFrame = currentFrame;
+}
+
+void Engine::Draw()
+{
+	glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 // Error Callback: Gets called whenever an error occurs within GLFW.

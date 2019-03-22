@@ -14,12 +14,18 @@ private:
 
 	bool _initialized = false;
 
+	float _deltaTime;
+	float _lastFrame;
+
 public:
 	Engine();
 	~Engine();
 
 	int Initialize();
 	int Run();
+
+	void UpdateTime();
+	void Draw();
 
 private:
 	static void Error_Callback(int error, const char* description);

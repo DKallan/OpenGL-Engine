@@ -5,7 +5,11 @@
 #include <iostream>
 
 // External includes.
+#include "glad/glad.h"
 #include "GLFW/glfw3.h"
+
+// My includes.
+#include "TextureLoader.h"
 
 class Window
 {
@@ -17,7 +21,7 @@ public:
 	bool Closed() const;
 	void Update() const;
 
-	GLFWwindow* GetCurrentWindowPtr() const { return _window; };
+	GLFWwindow& GetCurrentWindowRef() const { return *_window; };
 
 private:
 	// Callback functions.

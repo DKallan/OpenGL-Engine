@@ -16,6 +16,9 @@
     <Filter Include="Shader Files">
       <UniqueIdentifier>{e7fd6066-4fb4-4eae-8e81-52585528efe4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Dependency Implementation">
+      <UniqueIdentifier>{7db44920-3152-48cc-9f59-9e37ddbf26c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -31,6 +34,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="glad.cpp">
+      <Filter>Source Files\Dependency Implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,6 +62,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
