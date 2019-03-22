@@ -18,91 +18,41 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader.fs">
-      <Filter>Shader Files</Filter>
-    </None>
-    <None Include="texture.fs">
-      <Filter>Shader Files</Filter>
-    </None>
-    <None Include="camera.vs">
-      <Filter>Shader Files</Filter>
-    </None>
-    <None Include="lamp.vs">
-      <Filter>Shader Files</Filter>
-    </None>
-    <None Include="shader.vs">
-      <Filter>Shader Files</Filter>
-    </None>
-    <None Include="texture.vs">
-      <Filter>Shader Files</Filter>
-    </None>
-    <None Include="camera.fs">
-      <Filter>Shader Files</Filter>
-    </None>
-    <None Include="lamp.fs">
-      <Filter>Shader Files</Filter>
-    </None>
-    <None Include="pointlight.fs">
-      <Filter>Shader Files</Filter>
-    </None>
-    <None Include="pointlight.vs">
-      <Filter>Shader Files</Filter>
-    </None>
-    <None Include="directionallight.fs">
-      <Filter>Shader Files</Filter>
-    </None>
-    <None Include="directionallight.vs">
-      <Filter>Shader Files</Filter>
-    </None>
-    <None Include="flashlight.fs">
-      <Filter>Shader Files</Filter>
-    </None>
-    <None Include="flashlight.vs">
-      <Filter>Shader Files</Filter>
-    </None>
-    <None Include="light.fs">
-      <Filter>Shader Files</Filter>
-    </None>
-    <None Include="light.vs">
-      <Filter>Shader Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="container_specular.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="texture_stone.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="autumn-wood.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="container.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="shader.cpp">
+    <ClCompile Include="Engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stb_image.cpp">
+    <ClCompile Include="Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="camera.cpp">
+    <ClCompile Include="InputHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="glad.cpp">
+    <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="shader.h">
+    <Image Include="resources\minecraft_terrain.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\texture_stone.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="camera.h">
+    <ClInclude Include="Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
