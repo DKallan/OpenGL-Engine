@@ -57,7 +57,8 @@ void TextureLoader::SetWindowIcon(const char * path, GLFWwindow &_window) const
 {
 	GLFWimage icon; 
 	
-	icon.pixels = stbi_load(path, &icon.width, &icon.height, 0, 4); //rgba channels 
+	// Try to load the image.
+	icon.pixels = stbi_load(path, &icon.width, &icon.height, 0, 0);
 	if (!icon.pixels)
 	{
 		std::cout << "Failed to load image from path: " << path << std::endl;
