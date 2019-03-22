@@ -41,6 +41,12 @@ Engine::~Engine()
 
 int Engine::Initialize()
 {
+	if (_initialized)
+	{
+		std::cout << "The engine was already initialized!";
+		return 1;
+	}
+
 	// Create and Initialize a Window object.
 	_window = new Window(WIDTH, HEIGHT, "Minecraft Magma Edition");
 	if (!_window)
@@ -78,14 +84,9 @@ int Engine::Initialize()
 // Main execution point.
 int Engine::Run()
 {
-	float triangleVertices[] = {
-		-0.5f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		 0.0f,  0.5f, 0.0f
-	};
-
 	Shader triangleShader = Shader("Resources/Shaders/Triangle.vs", "Resources/Shaders/Triangle.fs");
-	Triangle dummy = Triangle(triangleVertices, &triangleShader);
+	Triangle dummy = Triangle(&triangleShader);
+	dummy.Initialize();
 
 	// Game loop.
 	while (!_window->Closed())

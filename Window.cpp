@@ -58,7 +58,7 @@ int Window::Initialize()
 	TextureLoader::Instance().SetWindowIcon("Resources/Assets/engine_icon.png", *_window);
 
 	// Enable z-buffer.
-	glEnable(GL_DEPTH_TEST);
+	//glEnable(GL_DEPTH_TEST);
 
 	_initialized = true;
 	return 0;
