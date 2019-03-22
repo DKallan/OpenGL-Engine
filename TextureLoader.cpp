@@ -12,8 +12,7 @@ TextureLoader & TextureLoader::Instance()
 
 unsigned int TextureLoader::LoadTexture(const char * path) const
 {
-	/*unsigned int textureID;
-
+	unsigned int textureID;
 	glGenTextures(1, &textureID);
 
 	int width, height, nrComponents;
@@ -22,6 +21,8 @@ unsigned int TextureLoader::LoadTexture(const char * path) const
 	{
 		std::cout << "Texture failed to load at path: " << path << std::endl;
 		stbi_image_free(data);
+
+		return textureID;
 	}
 
 	GLenum format;
@@ -49,8 +50,26 @@ unsigned int TextureLoader::LoadTexture(const char * path) const
 
 	stbi_image_free(data);
 
-	return textureID;*/
-	return 0;
+	return textureID;
+}
+
+void TextureLoader::SetWindowIcon(const char * path, GLFWwindow &_window) const
+{
+	GLFWimage icon; 
+	
+	icon.pixels = stbi_load(path, &icon.width, &icon.height, 0, 4); //rgba channels 
+	if (!icon.pixels)
+	{
+		std::cout << "Failed to load image from path: " << path << std::endl;
+		stbi_image_free(icon.pixels);
+		return;
+	}
+
+	// Set the window icon and free the data.
+	glfwSetWindowIcon(&_window, 1, &icon);
+	stbi_image_free(icon.pixels);
+	
+	return;
 }
 
 TextureLoader::TextureLoader()

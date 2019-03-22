@@ -28,6 +28,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="resources\engine_icon.png" />
     <Image Include="resources\minecraft_terrain.jpg" />
     <Image Include="resources\texture_stone.png" />
   </ItemGroup>

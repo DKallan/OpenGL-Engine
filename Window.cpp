@@ -47,16 +47,15 @@ int Window::Initialize()
 
 	glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	glfwSetWindowPos(_window, 100, 100);
-
-	unsigned int stb_icon = TextureLoader::Instance().LoadTexture("texture_stone.png");
-
-	//glfwSetWindowIcon(_window, 1, icon)
-
+	
+	// Initialize GLAD.
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		return -3;
 	}
+
+	TextureLoader::Instance().SetWindowIcon("Resources/engine_icon.png", *_window);
 
 	// Enable z-buffer.
 	glEnable(GL_DEPTH_TEST);

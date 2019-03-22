@@ -6,6 +6,7 @@
 
 // External includes.
 #include "glad/glad.h"
+#include "GLFW/glfw3.h"
 
 class TextureLoader
 {
@@ -17,6 +18,7 @@ public:
 	void operator=(TextureLoader const &other) = delete;
 
 	unsigned int LoadTexture(const char* path) const;
+	void SetWindowIcon(const char* path, GLFWwindow &_window) const;
 
 private:
 	TextureLoader();
