@@ -77,8 +77,8 @@ void Window::Update() const
 
 void Window::Clear() const
 {
-	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
 }
 
 // Resize Callback: Gets called whenever the window is resized and will change the viewport accordingly.

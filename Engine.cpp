@@ -78,58 +78,27 @@ int Engine::Initialize()
 // Main execution point.
 int Engine::Run()
 {
-
-	float squareVertices[] = {
-		// positions     // colors
-		-0.05f,  0.05f,  1.0f, 0.0f, 0.0f,
-		 0.05f, -0.05f,  0.0f, 1.0f, 0.0f,
-		-0.05f, -0.05f,  0.0f, 0.0f, 1.0f,
-
-		-0.05f,  0.05f,  1.0f, 0.0f, 0.0f,
-		 0.05f, -0.05f,  0.0f, 1.0f, 0.0f,
-		 0.05f,  0.05f,  0.0f, 1.0f, 1.0f
+	float triangleVertices[] = {
+		-0.5f, -0.5f, 0.0f,
+		 0.5f, -0.5f, 0.0f,
+		 0.0f,  0.5f, 0.0f
 	};
 
-	glm::vec2 translations[100];
-	int index = 0;
-	float offset = 0.1f;
-	for (int y = -10; y < 10; y += 2)
-	{
-		for (int x = -10; x < 10; x += 2)
-		{
-			glm::vec2 translation;
-			translation.x = (float)x / 10.0f + offset;
-			translation.y = (float)y / 10.0f + offset;
-			translations[index++] = translation;
-		}
-	}
-	
-	Shader basicShader("Resources/Shaders/Square.vs", "Resources/Shaders/Square.fs");
-	basicShader.Use();
-	for (unsigned int i = 0; i < 100; i++)
-	{
-		std::stringstream ss;
-		std::string index;
-		ss << i;
-		index = ss.str();
-		basicShader.SetVec2(("offsets[" + index + "]").c_str(), translations[i]);
-	}
-	
-	Square square = Square(squareVertices, &basicShader);
+	Shader triangleShader = Shader("Resources/Shaders/Triangle.vs", "Resources/Shaders/Triangle.fs");
+	Triangle dummy = Triangle(triangleVertices, &triangleShader);
 
 	// Game loop.
 	while (!_window->Closed())
 	{
 		UpdateTime();
+		
+		_inputHandler->ProcessInput(_deltaTime);
+		
 		// ===== DRAWING ======
 		_window->Clear();
-		square.Draw();
-
-		// ====================
-		
-		
+		dummy.Draw();
 		_window->Update();
-		_inputHandler->ProcessInput(_deltaTime);
+		// ====================		
 	}
 
 	return 0;

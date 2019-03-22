@@ -3,7 +3,7 @@
 
 #include "Shader.h"
 
-class Square
+class Triangle
 {
 private:
 	unsigned int _vbo;
@@ -12,8 +12,8 @@ private:
 	float* _vertices;
 
 public:
-	Square(float* vertices, Shader* shader);
-	~Square();
+	Triangle(float* vertices, Shader* shader);
+	~Triangle();
 
 	void Initialize();
 	void Draw();
