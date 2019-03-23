@@ -102,10 +102,10 @@ void Window::Mouse_Callback(GLFWwindow* window, double xpos, double ypos)
 	_lastX = (float) xpos;
 	_lastY = (float) ypos;
 	
-	//camera.ProcessMouseMovement(xoffset, yoffset);
+	Camera::Instance().ProcessMouseMovement(xoffset, yoffset);
 }
 
 void Window::Scroll_Callback(GLFWwindow * window, double xoffset, double yoffset)
 {
-	//camera.ProcessMouseScroll(yoffset);
+	Camera::Instance().ProcessMouseScroll(yoffset);
 }

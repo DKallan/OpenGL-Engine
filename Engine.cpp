@@ -1,7 +1,12 @@
 #include "Engine.h"
 
-static const int WIDTH = 1280;
-static const int HEIGHT = 720;
+const unsigned int SCR_WIDTH = 1280;
+const unsigned int SCR_HEIGHT = 720;
+
+// camera
+glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
 // Constructor.
 Engine::Engine()
@@ -24,17 +29,16 @@ Engine::~Engine()
 		_window = 0;
 	}
 
-	if (_camera)
-	{
-		delete _camera;
-		_camera = 0;
-	}
-
 	if (_inputHandler)
 	{
 		delete _inputHandler;
 		_inputHandler = 0;
 	}
+
+	// Destroy singleton instances since (this) is the last possible accessor class.
+	TextureLoader::Instance().~TextureLoader();
+	Camera::Instance().~Camera();
+	_camera = 0;
 
 	glfwTerminate();
 }
@@ -48,7 +52,7 @@ int Engine::Initialize()
 	}
 
 	// Create and Initialize a Window object.
-	_window = new Window(WIDTH, HEIGHT, "Minecraft Magma Edition");
+	_window = new Window(SCR_WIDTH, SCR_HEIGHT, "Minecraft Magma Edition");
 	if (!_window)
 	{
 		std::cout << "Failed to create a Window object." << std::endl;
@@ -62,13 +66,8 @@ int Engine::Initialize()
 		return result;
 	}
 
-	// Create a Camera object.
-	_camera = new Camera();
-	if (!_camera)
-	{
-		std::cout << "Failed to create Camera object." << std::endl;
-		return -4;
-	}
+	// Store a pointer to the camera.
+	_camera = &Camera::Instance();
 
 	// Create an Input Handler object.
 	_inputHandler = new InputHandler(_window->GetCurrentWindowRef(), *_camera);
@@ -85,12 +84,26 @@ int Engine::Initialize()
 int Engine::Run()
 {
 	// ===== SETUP ======
-	Shader triangleShader = Shader("Resources/Shaders/Textured.vs", "Resources/Shaders/Textured.fs");
-	Triangle cube = Triangle(&triangleShader);
+	Shader cubeShader = Shader("Resources/Shaders/Textured.vs", "Resources/Shaders/Textured.fs");
+	Cube cube = Cube(&cubeShader);
 	cube.Initialize();
 
+	glm::vec3 cubePositions[] = {
+		glm::vec3(0.0f,  0.0f,  0.0f),
+		glm::vec3(2.0f,  5.0f, -15.0f),
+		glm::vec3(-1.5f, -2.2f, -2.5f),
+		glm::vec3(-3.8f, -2.0f, -12.3f),
+		glm::vec3(2.4f, -0.4f, -3.5f),
+		glm::vec3(-1.7f,  3.0f, -7.5f),
+		glm::vec3(1.3f, -2.0f, -2.5f),
+		glm::vec3(1.5f,  2.0f, -2.5f),
+		glm::vec3(1.5f,  0.2f, -1.5f),
+		glm::vec3(-1.3f,  1.0f, -1.5f)
+	};
+
 	cube.AddTexture("Resources/Assets/texture_stone.png");
-	// ==================
+
+	cubeShader.SetVec3("viewPos", Camera::Instance().position);
 
 	// Game loop.
 	while (!_window->Closed())
@@ -99,24 +112,28 @@ int Engine::Run()
 		
 		_inputHandler->ProcessInput(_deltaTime);
 		
-		// create transformations
-		glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-		glm::mat4 view = glm::mat4(1.0f);
-		glm::mat4 projection = glm::mat4(1.0f);
-		model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
-		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-		projection = glm::perspective(glm::radians(45.0f), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
-		// retrieve the matrix uniform locations
-		unsigned int modelLoc = glGetUniformLocation(triangleShader.ID, "model");
-		unsigned int viewLoc = glGetUniformLocation(triangleShader.ID, "view");
-		// pass them to the shaders (3 different ways)
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &view[0][0]);
-		triangleShader.SetMat4("projection", projection);
-
 		// ===== DRAWING ======
 		_window->Clear();
-		cube.Draw();
+
+		// pass projection matrix to shader (note that in this case it could change every frame)
+		glm::mat4 projection = glm::perspective(glm::radians(Camera::Instance().zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+		cubeShader.SetMat4("projection", projection);
+
+		// camera/view transformation
+		glm::mat4 view = Camera::Instance().GetViewMatrix();
+		cubeShader.SetMat4("view", view);
+
+		for (unsigned int i = 0; i < 10; i++)
+		{
+			// calculate the model matrix for each object and pass it to shader before drawing
+			glm::mat4 model = glm::mat4(1.0f);
+			model = glm::translate(model, cubePositions[i]);
+			float angle = 20.0f * i;
+			model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+			cubeShader.SetMat4("model", model);
+
+			cube.Draw();
+		}
 		_window->Update();
 		// ====================		
 	}

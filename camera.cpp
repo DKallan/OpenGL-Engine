@@ -18,6 +18,12 @@ Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float u
 	UpdateCameraVectors();
 }
 
+Camera & Camera::Instance()
+{
+	static Camera instance;
+	return instance;
+}
+
 Camera::~Camera()
 {
 }

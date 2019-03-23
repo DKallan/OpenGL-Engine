@@ -7,7 +7,7 @@
 // My includes.
 #include "Window.h"
 #include "InputHandler.h"
-#include "Triangle.h"
+#include "Cube.h"
 
 class Engine
 {

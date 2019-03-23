@@ -10,6 +10,7 @@
 
 // My includes.
 #include "TextureLoader.h"
+#include "Camera.h"
 
 class Window
 {

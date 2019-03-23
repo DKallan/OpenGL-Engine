@@ -44,9 +44,11 @@ public:
 	float zoom;
 
 public:
-	Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = YAW, float pitch = PITCH);
-	Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch);
+	static Camera& Instance();
 	~Camera();
+
+	Camera(Camera const &other) = delete;
+	void operator=(Camera const &other) = delete;
 
 	glm::mat4 GetViewMatrix();
 	void ProcessKeyboard(CameraMovement direction, float deltaTime);
@@ -55,5 +57,8 @@ public:
 
 private:
 	void UpdateCameraVectors();
+	Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = YAW, float pitch = PITCH);
+	Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch);
+
 };
 #endif // !_CAMERA_H_

@@ -60,7 +60,7 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Source Files\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Triangle.cpp">
+    <ClCompile Include="Cube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,7 +83,7 @@
     <ClInclude Include="Shader.h">
       <Filter>Header Files\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Triangle.h">
+    <ClInclude Include="Cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -99,12 +99,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\Shaders\Triangle.fs">
-      <Filter>Resource Files\Shader Files</Filter>
-    </None>
-    <None Include="resources\Shaders\Triangle.vs">
-      <Filter>Resource Files\Shader Files</Filter>
-    </None>
     <None Include="Resources\Shaders\Textured.vs">
       <Filter>Resource Files\Shader Files</Filter>
     </None>
