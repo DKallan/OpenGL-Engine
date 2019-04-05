@@ -60,6 +60,11 @@ int Window::Initialize()
 	// Enable z-buffer.
 	glEnable(GL_DEPTH_TEST);
 
+	// Enable back face culling;
+	glFrontFace(GL_CW);
+	glCullFace(GL_BACK);
+	glEnable(GL_CULL_FACE);
+
 	_initialized = true;
 	return 0;
 }
