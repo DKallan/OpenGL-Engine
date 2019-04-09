@@ -37,6 +37,7 @@ Engine::~Engine()
 
 	// Destroy singleton instances since (this) is the last possible accessor class.
 	TextureLoader::Instance().~TextureLoader();
+
 	Camera::Instance().~Camera();
 	_camera = 0;
 

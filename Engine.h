@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _ENGINE_H_
 #define _ENGINE_H_
 
@@ -30,6 +31,8 @@ public:
 
 	void UpdateTime();
 	void Draw();
+
+	Window& GetWindow() const { return *_window; }
 
 private:
 	static void Error_Callback(int error, const char* description);

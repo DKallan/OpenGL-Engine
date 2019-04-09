@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _TRIANGLE_H_
 #define _CUBE_H_
 

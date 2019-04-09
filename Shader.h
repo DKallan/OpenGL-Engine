@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _SHADER_H_
 #define _SHADER_H_
 
@@ -13,14 +14,14 @@
 
 class Shader
 {
-public:
+protected:
 	unsigned int ID;
 
 public:
 	Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath = nullptr);
 	~Shader();
 
-	void Use();
+	void Use() const;
 	void SetBool(const std::string&, bool) const;
 	void SetInt(const std::string&, int) const;
 	void SetFloat(const std::string&, float) const;
@@ -33,9 +34,13 @@ public:
 	void SetMat2(const std::string&, const glm::mat2&) const;
 	void SetMat3(const std::string&, const glm::mat3&) const;
 	void SetMat4(const std::string&, const glm::mat4&) const;
+	void SetMat4(GLuint, const glm::mat4&) const;
 
 private:
 	void CheckCompileErrors(GLuint, std::string);
+
+protected:
+	virtual void GetUniforms() = 0;
 };
 
 #endif // !_SHADER_H_

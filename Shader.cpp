@@ -92,7 +92,7 @@ Shader::~Shader()
 {
 }
 
-void Shader::Use()
+void Shader::Use() const
 {
 	glUseProgram(ID);
 }
@@ -155,6 +155,11 @@ void Shader::SetMat3(const std::string &name, const glm::mat3 &mat) const
 void Shader::SetMat4(const std::string &name, const glm::mat4 &mat) const
 {
 	glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+}
+
+void Shader::SetMat4(GLuint location, const glm::mat4 & matrix) const
+{
+	glUniformMatrix4fv(location, 1, GL_FALSE, &matrix[0][0]);
 }
 
 void Shader::CheckCompileErrors(GLuint shader, std::string type)

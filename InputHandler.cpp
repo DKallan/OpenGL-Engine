@@ -23,7 +23,6 @@ void InputHandler::ProcessInput(float deltaTime)
 	if (glfwGetKey(_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(_window, true);
 
-
 	float cameraSpeed = deltaTime;
 
 	// If shift is pressed, speed up the camera speed.
